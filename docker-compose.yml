@@ -37,7 +37,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./ssl:/etc/ssl/toylap
+      - /home/toylap/tossApi/spring-api/ssl:/etc/ssl/toylap
       - ./html:/usr/share/nginx/html
     depends_on:
       - spring-api
