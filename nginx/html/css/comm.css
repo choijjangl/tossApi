@@ -1,0 +1,16 @@
+body { font-family: 'Pretendard', sans-serif; background: #f9fafb; padding: 2rem; }
+.container { max-width: 400px; margin: auto; background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+h1 { font-size: 1.5rem; margin-bottom: 1.2rem; color: #222; }
+label { display: block; margin-top: 1rem; font-weight: 600; color: #555; }
+input[type="text"] {
+    width: 100%; padding: 0.7rem; border: 1px solid #ccc;
+    border-radius: 0.5rem; margin-top: 0.3rem; font-size: 1rem;
+}
+.summary { margin-top: 1.5rem; background: #f1f5f9; padding: 1rem; border-radius: 0.5rem; font-size: 0.95rem; }
+.summary div { margin-bottom: 0.4rem; }
+.btn {
+    width: 100%; margin-top: 1.5rem; background: #3182F6; color: #fff;
+    border: none; padding: 0.8rem; font-size: 1rem; border-radius: 0.6rem;
+    cursor: pointer; transition: background 0.2s ease;
+}
+.btn:hover { background: #1d6ce4; }
