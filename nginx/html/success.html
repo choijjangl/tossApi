@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>결제 성공</title>
+</head>
+<body>
+<h1>✅ 결제가 성공적으로 완료되었습니다</h1>
+<div id="result"></div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const paymentKey = params.get("paymentKey");
+    const orderId = params.get("orderId");
+    const amount = Number(params.get("amount"));
+
+    fetch("https://4c9c943fe701.ngrok-free.app/api/payments/confirm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            paymentKey,
+            orderId,
+            amount
+        })
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("승인 응답:", data);
+            document.getElementById("result").innerHTML = `
+        <p>주문번호: ${orderId}</p>
+        <p>결제 금액: ${amount}원</p>
+        <p>영수증: <a href="${data.receipt.url}" target="_blank">보기</a></p>
+      `;
+        })
+        .catch((err) => {
+            console.error("결제 승인 실패", err);
+            document.getElementById("result").innerHTML = `<p style="color:red;">결제 승인에 실패했습니다.</p>`;
+        });
+</script>
+</body>
+</html>

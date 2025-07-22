@@ -1,1 +1,25 @@
-spring.application.name=spring-api
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-api
+
+  datasource:
+    url: jdbc:mariadb://db:3306/toss_pg
+    username: toss
+    password: toss1234
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+toss:
+  client-key: test_ck_yL0qZ4G1VOYxQ6R1N74v8oWb2MQY
+  secret-key: ${TOSS_SECRET_KEY}
+  security_key: ${TOSS_SECURITY_KEY}
+

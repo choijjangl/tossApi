@@ -1,12 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>토스페이먼츠 데모 결제</title>
+    <script src="https://js.tosspayments.com/v1"></script>
+    <style>
+        body { font-family: 'Pretendard', sans-serif; text-align: center; margin-top: 100px; }
+        .container { width: 400px; margin: auto; }
+        input, button { padding: 10px; margin: 10px; width: 80%; }
+        h1 { margin-bottom: 0; }
+        p { margin-top: 5px; color: #888; }
+    </style>
 </head>
 <body>
-    <h1>
-        Hello World
-    </h1>
+<div class="container">
+    <h1>💳 토스페이먼츠 테스트</h1>
+    <p>비회원 결제 테스트 (DEMO)</p>
+
+    <input id="orderName" type="text" value="테스트 상품" readonly />
+    <input id="amount" type="number" value="50000" readonly />
+    <button onclick="pay()">결제하기</button>
+</div>
+
+<script>
+    const clientKey = "test_ck_yL0qZ4G1VOYxQ6R1N74v8oWb2MQY"; // 🔑 본인 테스트 클라이언트 키 입력
+
+    const tossPayments = TossPayments(clientKey);
+
+    function generateOrderId() {
+        return "ORDER_" + Math.random().toString(36).substring(2, 12).toUpperCase();
+    }
+
+    function pay() {
+        const orderName = document.getElementById("orderName").value;
+        const amount = Number(document.getElementById("amount").value);
+        const orderId = generateOrderId();
+        fetch("/api/orders/create", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                orderName: "토스 티셔츠",
+                orderId: orderId,
+                amount: 50000
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+
+        tossPayments.requestPayment("카드", {
+            amount: amount,
+            orderId: orderId,
+            orderName: orderName,
+            customerName: "홍길동",
+            successUrl: window.location.origin + "/success.html",
+            failUrl: window.location.origin + "/fail.html",
+        });
+    });
+    }
+</script>
 </body>
 </html>
