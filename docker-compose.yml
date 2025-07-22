@@ -33,12 +33,9 @@ services:
     container_name: nginx
     ports:
       - "80:80"
-      - "443:443"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - /home/toylap/tossApi/spring-api/ssl:/etc/ssl/toylap
-      - ./html:/usr/share/nginx/html
+      - ./nginx/html:/usr/share/nginx/html:ro
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - spring-api
     networks:

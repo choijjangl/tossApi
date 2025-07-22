@@ -14,8 +14,8 @@
 </head>
 <body>
 <div class="container">
-    <h1>💳 토스페이먼츠 테스트</h1>
-    <p>비회원 결제 테스트 (DEMO)</p>
+    <h1>토스페이먼츠 테스트</h1>
+    <p>결제 테스트</p>
 
     <input id="orderName" type="text" value="테스트 상품" readonly />
     <input id="amount" type="number" value="50000" readonly />
@@ -39,7 +39,7 @@
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                orderName: "토스 티셔츠",
+                orderName: "확성기",
                 orderId: orderId,
                 amount: 50000
             })
